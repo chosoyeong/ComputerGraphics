@@ -94,6 +94,8 @@ main()
 <script type="text/javascript" src="object/light.js"></script>
 <script type="text/javascript" src="object/number.js"></script>
 <script type="text/javascript" src="object/hint.js"></script>
+<script type="text/javascript" src="object/lock.js"></script>
+
 
 <script type="text/javascript">
   function button_click(){
@@ -101,13 +103,46 @@ main()
     if(pass==5193){
 
         //document.getElementById("test").innerHTML=pass;
-        alert("Success ! ");
-    }
-    else{
-      alert("Please enter the PASSWORD, AGAIN ! ");
+
+        //모달창 띄우기
+        // Get the modal
+      var modal = document.getElementById('myModal');
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      // When the user clicks on the button, open the modal
+      modal.style.display = "block";
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+      modal.style.display = "none";
+      }
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+      }
     }
 
-  }
+    else{
+          //모달창 띄우기
+          // Get the modal
+        var modal = document.getElementById('myModal2');
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        // When the user clicks on the button, open the modal
+        modal.style.display = "block";
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+        modal.style.display = "none";
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+        }
+      }
+    }
 </script>
 
 <style>
@@ -127,18 +162,58 @@ main()
             width: 100%;
             margin-bottom: 10px;
         }
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */
+            font-family: Fantasy;
+            font-size : 25px;
+        }
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
 </style>
 
 <body>
 <canvas id="gl-canvas" width="1024" height="512">
 Oops ... your browser doesn't support the HTML5 canvas element
 </canvas>
-
+&nbsp
 <h3 style="font-family:verdana;"> &nbsp Please enter the PASSWORD, </h3>
 
-&nbsp
-<input type = "text" id="password" size = "4" maxlength="4" style="vertical-align:top">
-<button type="button" onclick="button_click();" style="font-family:verdana;"> enter </button>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+<input type = "text" id="password" size = "4" maxlength="4" style = "font-family: Fantasy; border: 2px solid; font-size : 25px; vertical-align:top;">
+<button type="button" id="myBtn" onclick="button_click();" style="font-family: Helvetica; font-size : 27px; background:green"> enter </button>
 
 <br><br>
 &nbsp
@@ -146,6 +221,28 @@ Oops ... your browser doesn't support the HTML5 canvas element
   <source src="music.mp3" type="audio/mp3">
 </audio>
 <p id="test"></p>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p align="center">SUCCESS!!</p>
+  </div>
+
+</div>
+
+
+<!-- The Modal -->
+<div id="myModal2" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p align="center">Please enter the PASSWORD, AGAIN ! </p>
+  </div>
+
+</div>
 
 </body>
 </html>

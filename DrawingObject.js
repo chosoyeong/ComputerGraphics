@@ -8,49 +8,24 @@ function DrawingSetup(){
 
   Classroom.Init(pointsArray, colorsArray);
   Blackboard.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//504
-  console.log(colorsArray.length);
   Chair.Init(pointsArray, colorsArray, texCoordsArray);
-  console.log(pointsArray.length);//828
-  console.log(colorsArray.length);
-  console.log(texCoordsArray.length);
   Desk.Init(pointsArray, colorsArray, texCoordsArray);
-  console.log(pointsArray.length);//1008
-  console.log(colorsArray.length);
-  console.log(texCoordsArray.length);
 
   Lecture_desk.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//1368
-  console.log(colorsArray.length);
 
   Locker.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//2832
-  console.log(colorsArray.length);
   for(var i = 0 ; i < 1094; i++){
     texCoordsArray.push(vec2(0, 0));
   }
   Clock.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//3926
-  console.log(colorsArray.length);
-  console.log(texCoordsArray.length);
 
   Blind.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//3962
-  console.log(colorsArray.length);
-  console.log(texCoordsArray.length);
   Door.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//3998
-  console.log(colorsArray.length);
-  console.log(texCoordsArray.length);
   Light.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//4034
-  console.log(colorsArray.length);
-  console.log(texCoordsArray.length);
   Number.Init(pointsArray, colorsArray);
-  console.log(pointsArray.length);//3998
-  console.log(colorsArray.length);
-  console.log(texCoordsArray.length);
   Hint.Init(pointsArray, colorsArray);
+  Lock.Init(pointsArray, colorsArray);
+
 
   return [pointsArray, colorsArray, texCoordsArray];
 
@@ -74,6 +49,7 @@ function DrawObject(scaleLoc, thetaLoc, offsetLoc, texture_desk){
   drawlist = Light.GetDraw(drawlist);
   drawlist = Number.GetDraw(drawlist);
   drawlist = Hint.GetDraw(drawlist);
+  drawlist = Lock.GetDraw(drawlist);
   //console.log(drawlist);
   //Texture 적용하지 않는 것
   gl.uniform1f(textureMappingLoc, 0.0);
@@ -239,7 +215,6 @@ function DrawObject(scaleLoc, thetaLoc, offsetLoc, texture_desk){
   num = num + drawlist[18][1];
   //숫자
   //1
-  console.log(num);
   theta = [-90, 0, 0];
   gl.uniform4fv(offsetLoc, [-0.5, 0.02, -1.9, 0]);
   gl.uniform3fv(thetaLoc, theta);
@@ -308,6 +283,30 @@ function DrawObject(scaleLoc, thetaLoc, offsetLoc, texture_desk){
   gl.uniform4fv( scaleLoc, drawlist[31][2]);
   gl.drawArrays( drawlist[31][0], num, drawlist[31][1]);
   num = num + drawlist[31][1];
+  var num2 = num;
+
+  //자물쇠
+  theta = [0, -90, 0];
+  gl.uniform4fv(offsetLoc, [2.0, 0.33, -2.92, 0]);
+  gl.uniform3fv(thetaLoc, theta);
+  gl.uniform4fv( scaleLoc, drawlist[32][2]);
+  for(var i = 0; i < 9; i++){
+    gl.drawArrays( drawlist[32+i][0], num, drawlist[32+i][1]);
+    num = num + drawlist[32+i][1];
+  }
+
+  theta = [0, -90, 0];
+  gl.uniform4fv(offsetLoc, [2.0, 0.33, 3.49, 0]);
+  gl.uniform3fv(thetaLoc, theta);
+  gl.uniform4fv( scaleLoc, drawlist[32][2]);
+  for(var i = 0; i < 9; i++){
+    gl.drawArrays( drawlist[32+i][0], num2, drawlist[32+i][1]);
+    num2 = num2 + drawlist[32+i][1];
+  }
+  // gl.drawArrays( drawlist[32][0], num, drawlist[32][1]);
+  // num = num + drawlist[32][1];
+  // gl.drawArrays( drawlist[33][0], num, drawlist[33][1]);
+  // num = num + drawlist[33][1];
 
 }
 function make_chair_desk(scaleLoc, thetaLoc, offsetLoc, X, Z, drawlist, num){
